@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
     *   }
     * */
 
+    ArrayList<Produto> databaseProductList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //Pega dados do banco
-        ArrayList<Produto> databaseProductList = getDatabaseProductList();
+        databaseProductList = getDatabaseProductList();
 
         //Cria instância do adapter customizado para a lista de produtos
         PruductAdapter productAdapter = new
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view) {
-        HashMap<Integer,Integer> prodList = new HashMap<Integer,Integer>();
+        HashMap<Integer, Integer> prodList = new HashMap<Integer, Integer>();
 
         //Pega os valores da tela
         ListView mainList = (ListView) findViewById(R.id.listView);
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 int num = numberPicker.getValue();
 
 
-                prodList.put(Integer.parseInt(txtidProd.getText().toString()),num);
+                prodList.put(Integer.parseInt(txtidProd.getText().toString()), num);
             }
         }
 
