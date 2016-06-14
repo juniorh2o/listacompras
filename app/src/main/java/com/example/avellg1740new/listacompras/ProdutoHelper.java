@@ -21,74 +21,74 @@ public class ProdutoHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table loja ("
                 + "_id integer primary key autoincrement, "
-                + "nome text)");
+                + "nome text);");
 
         db.execSQL("create table produto ("
                 + "_id integer primary key autoincrement, "
-                + "nome text)");
+                + "nome text);");
 
         db.execSQL("create table preco ("
                 + "_id integer primary key autoincrement, "
                 + "valor integer,"
                 + "idLoja text,"
-                + "idProduto integer )");
+                + "idProduto integer );");
 
-        db.execSQL("insert into loja (nome) values ('Big')"
-                + "insert into loja (nome) values ('Fort Atacadista')"
-                + "insert into loja (nome) values ('Angeloni')"
-                + "insert into loja (nome) values ('Giassi')");
+        db.execSQL("INSERT INTO loja (nome) VALUES ('Big');"
+                + "INSERT INTO loja (nome) VALUES ('Fort Atacadista');"
+                + "INSERT INTO loja (nome) VALUES ('Angeloni');"
+                + "INSERT INTO loja (nome) VALUES ('Giassi');");
 
-        db.execSQL("insert into produto (nome) values ('Nescau')"
-                + "insert into produto (nome) values ('Leite')"
-                + "insert into produto (nome) values ('Café')"
-                + "insert into produto (nome) values ('Bolacha')"
-                + "insert into produto (nome) values ('Sabonete')"
-                + "insert into produto (nome) values ('Cerveja')"
-                + "insert into produto (nome) values ('Refrigerante')"
-                + "insert into produto (nome) values ('Água')"
-                + "insert into produto (nome) values ('Vinho')"
-                + "insert into produto (nome) values ('Macarrão')");
+        db.execSQL("INSERT INTO produto (nome) VALUES ('Nescau');"
+                + "INSERT INTO produto (nome) VALUES ('Leite');"
+                + "INSERT INTO produto (nome) VALUES ('Café');"
+                + "INSERT INTO produto (nome) VALUES ('Bolacha');"
+                + "INSERT INTO produto (nome) VALUES ('Sabonete');"
+                + "INSERT INTO produto (nome) VALUES ('Cerveja');"
+                + "INSERT INTO produto (nome) VALUES ('Refrigerante');"
+                + "INSERT INTO produto (nome) VALUES ('Água');"
+                + "INSERT INTO produto (nome) VALUES ('Vinho');"
+                + "INSERT INTO produto (nome) VALUES ('Macarrão');");
 
-        db.execSQL("insert into preco (valor, idLoja, idProduto) values (390, 1, 1);"
-                + "insert into preco (valor, idLoja, idProduto) values (350, 2, 1);"
-                + "insert into preco (valor, idLoja, idProduto) values (400, 3, 1);"
-                + "insert into preco (valor, idLoja, idProduto) values (430, 4, 1);"
-                + "insert into preco (valor, idLoja, idProduto) values (120, 1, 2);"
-                + "insert into preco (valor, idLoja, idProduto) values (100, 2, 2);"
-                + "insert into preco (valor, idLoja, idProduto) values (140, 3, 2);"
-                + "insert into preco (valor, idLoja, idProduto) values (110, 4, 2);"
-                + "insert into preco (valor, idLoja, idProduto) values (500, 1, 3);"
-                + "insert into preco (valor, idLoja, idProduto) values (490, 2, 3);"
-                + "insert into preco (valor, idLoja, idProduto) values (550, 3, 3);"
-                + "insert into preco (valor, idLoja, idProduto) values (510, 4, 3);"
-                + "insert into preco (valor, idLoja, idProduto) values (110, 1, 4);"
-                + "insert into preco (valor, idLoja, idProduto) values (120, 2, 4);"
-                + "insert into preco (valor, idLoja, idProduto) values (090, 3, 4);"
-                + "insert into preco (valor, idLoja, idProduto) values (110, 4, 4);"
-                + "insert into preco (valor, idLoja, idProduto) values (070, 1, 5);"
-                + "insert into preco (valor, idLoja, idProduto) values (060, 2, 5);"
-                + "insert into preco (valor, idLoja, idProduto) values (100, 3, 5);"
-                + "insert into preco (valor, idLoja, idProduto) values (080, 4, 5);"
-                + "insert into preco (valor, idLoja, idProduto) values (115, 1, 6);"
-                + "insert into preco (valor, idLoja, idProduto) values (100, 2, 6);"
-                + "insert into preco (valor, idLoja, idProduto) values (130, 3, 6);"
-                + "insert into preco (valor, idLoja, idProduto) values (178, 4, 6);"
-                + "insert into preco (valor, idLoja, idProduto) values (390, 1, 7);"
-                + "insert into preco (valor, idLoja, idProduto) values (400, 2, 7);"
-                + "insert into preco (valor, idLoja, idProduto) values (380, 3, 7);"
-                + "insert into preco (valor, idLoja, idProduto) values (370, 4, 7);"
-                + "insert into preco (valor, idLoja, idProduto) values (090, 1, 8);"
-                + "insert into preco (valor, idLoja, idProduto) values (100, 2, 8);"
-                + "insert into preco (valor, idLoja, idProduto) values (110, 3, 8);"
-                + "insert into preco (valor, idLoja, idProduto) values (070, 4, 8);"
-                + "insert into preco (valor, idLoja, idProduto) values (1200, 1, 9);"
-                + "insert into preco (valor, idLoja, idProduto) values (1500, 2, 9);"
-                + "insert into preco (valor, idLoja, idProduto) values (2100, 3, 9);"
-                + "insert into preco (valor, idLoja, idProduto) values (1900, 4, 9);"
-                + "insert into preco (valor, idLoja, idProduto) values (580, 1, 10);"
-                + "insert into preco (valor, idLoja, idProduto) values (400, 2, 10);"
-                + "insert into preco (valor, idLoja, idProduto) values (300, 3, 10);"
-                + "insert into preco (valor, idLoja, idProduto) values (440, 4, 10);");
+        db.execSQL("INSERT INTO preco (valor, idLoja, idProduto) VALUES (390, 1, 1);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (350, 2, 1);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (400, 3, 1);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (430, 4, 1);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (120, 1, 2);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (100, 2, 2);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (140, 3, 2);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (110, 4, 2);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (500, 1, 3);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (490, 2, 3);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (550, 3, 3);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (510, 4, 3);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (110, 1, 4);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (120, 2, 4);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (090, 3, 4);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (110, 4, 4);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (070, 1, 5);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (060, 2, 5);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (100, 3, 5);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (080, 4, 5);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (115, 1, 6);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (100, 2, 6);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (130, 3, 6);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (178, 4, 6);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (390, 1, 7);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (400, 2, 7);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (380, 3, 7);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (370, 4, 7);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (090, 1, 8);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (100, 2, 8);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (110, 3, 8);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (070, 4, 8);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (1200, 1, 9);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (1500, 2, 9);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (2100, 3, 9);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (1900, 4, 9);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (580, 1, 10);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (400, 2, 10);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (300, 3, 10);"
+                + "INSERT INTO preco (valor, idLoja, idProduto) VALUES (440, 4, 10);");
     }
 
     @Override
@@ -96,10 +96,10 @@ public class ProdutoHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getAll() {
-        String selectQuery = "SELECT prod.nome as nomeProd, loja.name as nomeLoja, preco.valor as valor "
-                + "FROM preco"
-                + "INNER JOIN produto prod ON prod.id = preco.idProduto"
-                + "INNER JOIN loja loja ON loja.id = preco.idLoja"
+        String selectQuery = "SELECT prod.nome as nomeProd, loja.nome as nomeLoja, preco.valor as valor "
+                + " FROM preco"
+                + " INNER JOIN produto prod ON prod._id = preco.idProduto"
+                + " INNER JOIN loja loja ON loja._id = preco.idLoja"
                 + " ORDER BY nomeProd, nomeLoja ";
         Cursor cursor = getReadableDatabase().rawQuery(selectQuery, null);
         return cursor;
