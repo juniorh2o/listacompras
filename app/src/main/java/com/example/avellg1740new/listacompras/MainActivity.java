@@ -1,6 +1,7 @@
 package com.example.avellg1740new.listacompras;
 
 import android.support.v7.app.AppCompatActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
         databaseProductList = getDatabaseProductList();
 
         //Cria instância do adapter customizado para a lista de produtos
-        PruductAdapter productAdapter = new
-                PruductAdapter(this, databaseProductList);
+        ProdutoAdapter produtoAdapter = new
+                ProdutoAdapter(this, databaseProductList);
 
 
         //Pega instância da mainList
         ListView mainList = (ListView) findViewById(R.id.listView);
 
         //Adequa o adapter à mainList
-        mainList.setAdapter(productAdapter);
+        mainList.setAdapter(produtoAdapter);
     }
 
     //Realiza consulta no banco e retorna os dados em formato JSON conforme explicado acima.
@@ -66,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Preco> precos;
 
         //Conecta com o banco
+        ProdutoHelper produtoHelper = new ProdutoHelper(this);
+        Cursor cur = produtoHelper.getAll();
+        while (cur.moveToNext()) {
+            //Constroi os objetos
+        }
 
         //Cria JSON baseado na consulta
         ArrayList<Produto> jsonObject = new ArrayList<Produto>();

@@ -8,12 +8,12 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import java.util.List;
 
-public class PruductAdapter extends ArrayAdapter<Produto> {
+public class ProdutoAdapter extends ArrayAdapter<Produto> {
 
     private final Activity context;
     private final List<Produto> productList;
 
-    public PruductAdapter(Activity context, List<Produto> productList) {
+    public ProdutoAdapter(Activity context, List<Produto> productList) {
         //Para criar a List precisa dos nomes dos produtos, portanto é feita a extração de dados do JSON para String[] apenas com os nomes.
         super(context, R.layout.product_list, productList);
 
