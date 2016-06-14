@@ -10,7 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     /*
@@ -84,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view) {
+        HashMap<Integer,Integer> prodList = new HashMap<Integer,Integer>();
 
-        ArrayList<Integer> ListIdProd = new ArrayList<Integer>();
-
+        //Pega os valores da tela
         ListView mainList = (ListView) findViewById(R.id.listView);
         int j = mainList.getChildCount();
         for (int i = 0; i < j; i++) {
@@ -99,12 +102,18 @@ public class MainActivity extends AppCompatActivity {
                 int num = numberPicker.getValue();
 
 
-                ListIdProd.add(Integer.parseInt(txtidProd.getText().toString()));
+                prodList.put(Integer.parseInt(txtidProd.getText().toString()),num);
             }
         }
 
-        Log.d("Teste", ListIdProd.get(0).toString());
-        Log.d("Teste", ListIdProd.get(1).toString());
+        Iterator i = prodList.entrySet().iterator();
+
+        //Passa produto a produto para calcular
+        while (i.hasNext()) {
+            Map.Entry prod = (Map.Entry) i.next();
+            Log.d("Object key: ", prod.getKey().toString());
+            Log.d("Object value: ", prod.getValue().toString());
+        }
     }
 }
 
