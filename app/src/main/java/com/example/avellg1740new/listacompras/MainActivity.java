@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Realiza consulta no banco e retorna os dados em formato JSON conforme explicado acima.
     protected ArrayList<Produto> getDatabaseProductList() {
+        ArrayList<Produto> jsonObject = new ArrayList<Produto>();
         Produto prod;
         ArrayList<Preco> precos;
 
@@ -70,25 +71,17 @@ public class MainActivity extends AppCompatActivity {
         ProdutoHelper produtoHelper = new ProdutoHelper(this);
         Cursor cur = produtoHelper.getAll();
         while (cur.moveToNext()) {
-            //Constroi os objetos
+            //Constrói os objetos
+
+            //Exemplo de como deve criar um objeto!
+            precos = new ArrayList<Preco>();
+            precos.add(new Preco(1, 200));
+            precos.add(new Preco(2, 250));
+
+            prod = new Produto(1, "caixa de leite", precos);
+            jsonObject.add(prod);
         }
 
-        //Cria JSON baseado na consulta
-        ArrayList<Produto> jsonObject = new ArrayList<Produto>();
-
-        precos = new ArrayList<Preco>();
-        precos.add(new Preco(1, 200));
-        precos.add(new Preco(2, 250));
-
-        prod = new Produto(1, "caixa de leite", precos);
-        jsonObject.add(prod);
-
-        precos = new ArrayList<Preco>();
-        precos.add(new Preco(1, 500));
-        precos.add(new Preco(2, 550));
-
-        prod = new Produto(2, "Caixa de fósforo", precos);
-        jsonObject.add(prod);
 
         return jsonObject;
     }
