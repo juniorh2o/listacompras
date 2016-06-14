@@ -1,9 +1,12 @@
 package com.example.avellg1740new.listacompras;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -84,6 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         return jsonObject;
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Parceiros");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.fragment_partner);
+        dialog.setTitle("Parceiros");
+
+        dialog.show();
+
+        return true;
     }
 
     public void calcular(View view) {
