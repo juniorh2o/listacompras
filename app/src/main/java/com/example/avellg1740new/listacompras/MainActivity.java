@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
@@ -133,6 +134,29 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Object key: ", prod.getKey().toString());
             Log.d("Object value: ", prod.getValue().toString());
         }
+
+        showResultDialog("Angeloni", "14,50");
+    }
+
+    public void showResultDialog(String mercado, String valor) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.result);
+        dialog.setTitle("Resultado");
+
+        TextView txtTitle = (TextView) dialog.findViewById(R.id.result_text_mercado);
+        txtTitle.setText("Mercado: " + mercado);
+
+        txtTitle = (TextView) dialog.findViewById(R.id.result_text_valor);
+        txtTitle.setText("Valor: R$" + valor);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.result_button);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
 
