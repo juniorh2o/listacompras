@@ -14,9 +14,11 @@ import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -135,10 +137,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Object value: ", prod.getValue().toString());
         }
 
-        showResultDialog("Angeloni", "14,50");
+        showResultDialog("Angeloni", 1450);
     }
 
-    public void showResultDialog(String mercado, String valor) {
+    public void showResultDialog(String mercado, Integer valor) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.getDefault());
+
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.result);
         dialog.setTitle("Resultado");
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         txtTitle.setText("Mercado: " + mercado);
 
         txtTitle = (TextView) dialog.findViewById(R.id.result_text_valor);
-        txtTitle.setText("Valor: R$" + valor);
+        txtTitle.setText("Valor: " + formatter.format(valor / 100.00));
 
         Button dialogButton = (Button) dialog.findViewById(R.id.result_button);
         dialogButton.setOnClickListener(new View.OnClickListener() {
