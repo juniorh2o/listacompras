@@ -3,8 +3,6 @@ package com.example.avellg1740new.listacompras;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.OnValueChangeListener;
 
-import java.util.ArrayList;
-
 public class ValueNumberPickerListener implements OnValueChangeListener {
 
     Produto prod;

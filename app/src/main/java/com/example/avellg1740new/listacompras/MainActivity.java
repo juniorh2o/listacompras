@@ -4,21 +4,16 @@ import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Produto> databaseProductList;
@@ -85,16 +80,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view) {
+        ArrayList<Loja> lojas = new ArrayList<Loja>();
+        ProdutoHelper produtoHelper = new ProdutoHelper(this);
+        Cursor cur = produtoHelper.getAllLoja();
+
+        while (cur.moveToNext())
+            lojas.add(new Loja(cur.getInt(0), cur.getString(1)));
+
+
+        //Para cada produto
         for (Produto obj : databaseProductList) {
-            Log.d("Object id: ", "" + obj.getId());
-            Log.d("Object name: ", "" + obj.getNome());
-            Log.d("Object amount: ", "" + obj.getAmount());
+            //Se selecionou mais de 1
+            if (obj.getAmount() > 0) {
+                //Para cada preço daquele produto
+                for (Preco preco : obj.getPrecoList()) {
+                    //Pega a loja do preco;
+                    Loja loja = lojas.get(preco.getLojaId() - 1);
+
+                    //Pega o valor atual da compra para a loja específica
+                    Integer valorAtualDaCompra = loja.getValorTotal();
+
+                    //Adiciona o preço do produto ao preço atual da compra
+                    loja.setValorTotal(valorAtualDaCompra + (preco.getValor() * obj.getAmount()));
+                }
+            }
+        }
+        Loja lojaMaisBarata = null;
+        Integer precoMaisBaixo = -1;
+
+        for (Loja loja : lojas) {
+            if (loja.getValorTotal() <= precoMaisBaixo || precoMaisBaixo == -1){
+                lojaMaisBarata = loja;
+                precoMaisBaixo = lojaMaisBarata.getValorTotal();
+            }
         }
 
-        showResultDialog("Angeloni", 1450);
+        showResultDialog(lojaMaisBarata);
     }
 
-    public void showResultDialog(String mercado, Integer valor) {
+    public void showResultDialog(Loja loja) {
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.getDefault());
 
         final Dialog dialog = new Dialog(this);
@@ -102,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
         dialog.setTitle("Resultado");
 
         TextView txtTitle = (TextView) dialog.findViewById(R.id.result_text_mercado);
-        txtTitle.setText("Mercado: " + mercado);
+        txtTitle.setText("Mercado: " + loja.getNome());
 
         txtTitle = (TextView) dialog.findViewById(R.id.result_text_valor);
-        txtTitle.setText("Valor: " + formatter.format(valor / 100.00));
+        txtTitle.setText("Valor: " + formatter.format(loja.getValorTotal() / 100.00));
 
         Button dialogButton = (Button) dialog.findViewById(R.id.result_button);
         dialogButton.setOnClickListener(new View.OnClickListener() {

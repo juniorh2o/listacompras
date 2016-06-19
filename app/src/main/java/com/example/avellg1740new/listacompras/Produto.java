@@ -38,4 +38,8 @@ public class Produto {
         this.id = id;
         this.nome = nome;
     }
+
+    public ArrayList<Preco> getPrecoList() {
+        return this.preco;
+    }
 }

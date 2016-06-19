@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class ProdutoHelper extends SQLiteOpenHelper {
     /*
@@ -115,9 +114,9 @@ public class ProdutoHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getAllLoja(int idProduto) {
+    public Cursor getAllLoja() {
         try {
-            String selectQuery = " SELECT _id FROM loja WHERE idProduto = " + idProduto;
+            String selectQuery = " SELECT _id,nome FROM loja";
             return getReadableDatabase().rawQuery(selectQuery, null);
         } catch (Exception erro) {
             erro.printStackTrace();
