@@ -3,9 +3,19 @@ package com.example.avellg1740new.listacompras;
 import android.widget.NumberPicker;
 import android.widget.NumberPicker.OnValueChangeListener;
 
-/**
- * Created by Avell G1740NEW on 19/06/2016.
- */
+import java.util.ArrayList;
+
 public class ValueNumberPickerListener implements OnValueChangeListener {
 
+    Produto prod;
+
+    public ValueNumberPickerListener(Produto prod) {
+        super();
+        this.prod = prod;
+    }
+
+    @Override
+    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+        this.prod.setAmount(i1);
+    }
 }

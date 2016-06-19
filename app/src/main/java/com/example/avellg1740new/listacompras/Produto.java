@@ -1,4 +1,5 @@
 package com.example.avellg1740new.listacompras;
+
 import java.util.ArrayList;
 
 public class Produto {
@@ -6,6 +7,7 @@ public class Produto {
     private int id;
     private String nome;
     private ArrayList<Preco> preco;
+    public Integer amount = 0;
 
     public int getId() {
         return id;
@@ -13,6 +15,14 @@ public class Produto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getNome() {

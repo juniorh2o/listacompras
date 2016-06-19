@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -86,30 +85,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular(View view) {
-        HashMap<Integer, Integer> prodList = new HashMap<Integer, Integer>();
-
-        //Pega os valores da tela
-        ListView mainList = (ListView) findViewById(R.id.listView);
-        int j = mainList.getCount();
-        for (int i = 0; i < j; i++) {
-            View view1 = mainList.getAdapter().getView(i, null, null);
-
-            TextView txtidProd = (TextView) view1.findViewById(R.id.idProd);
-            NumberPicker numberPicker = (NumberPicker) view1.findViewById(R.id.numberPicker);
-
-            TextView textView = (TextView) view1.findViewById(R.id.textView);
-            Log.d("Nome:",textView.getText().toString());
-
-            prodList.put(Integer.parseInt(txtidProd.getText().toString()), numberPicker.getValue());
-        }
-
-        Iterator i = prodList.entrySet().iterator();
-
-        //Passa produto a produto para calcular
-        while (i.hasNext()) {
-            Map.Entry prod = (Map.Entry) i.next();
-            Log.d("Object key: ", prod.getKey().toString());
-            Log.d("Object value: ", prod.getValue().toString());
+        for (Produto obj : databaseProductList) {
+            Log.d("Object id: ", "" + obj.getId());
+            Log.d("Object name: ", "" + obj.getNome());
+            Log.d("Object amount: ", "" + obj.getAmount());
         }
 
         showResultDialog("Angeloni", 1450);
