@@ -22,29 +22,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    /*
-    * Lista de produtos:
-    * Esoerado JSON no formato
-    *
-    * JSONObject produto {
-    *   id: 01
-    *   nome: Tesoura,
-    *   preço:{
-    *       01: 1000,  //R% 10,00
-    *       02: 1500   //R$ 15,00
-    *       ...
-    *   }
-    *
-    *   Sendo os ID's no preço, o ID de cada mercado que contém tal produto.
-    * JSONObject loja {
-    *       01:"BIG",
-    *       02:"Angelloni",
-    *       03:"Giassi",
-    *       04:"Santa Rosa"
-    *       ...
-    *   }
-    * */
-
     ArrayList<Produto> databaseProductList;
 
     @Override
@@ -56,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
         databaseProductList = getDatabaseProductList();
 
         //Cria instância do adapter customizado para a lista de produtos
-        ProdutoAdapter produtoAdapter = new
-                ProdutoAdapter(this, databaseProductList);
-
+        ProdutoAdapter produtoAdapter = new ProdutoAdapter(this, databaseProductList);
 
         //Pega instância da mainList
         ListView mainList = (ListView) findViewById(R.id.listView);
@@ -71,23 +46,25 @@ public class MainActivity extends AppCompatActivity {
     protected ArrayList<Produto> getDatabaseProductList() {
         ArrayList<Produto> jsonObject = new ArrayList<Produto>();
         Produto prod;
-        ArrayList<Preco> precos;
+        ArrayList<Preco> precos = new ArrayList<Preco>();
 
         //Conecta com o banco
         ProdutoHelper produtoHelper = new ProdutoHelper(this);
-        Cursor cur = produtoHelper.getAll();
+        Cursor cur = produtoHelper.getAllProduto();
+
+        //Iterate sobre os produtos
         while (cur.moveToNext()) {
-            //Constrói os objetos
-
-            //Exemplo de como deve criar um objeto!
             precos = new ArrayList<Preco>();
-            precos.add(new Preco(1, 200));
-            precos.add(new Preco(2, 250));
+            //Iterate sobre os preços do produto iterado
+            Cursor cur2 = produtoHelper.getAllPreco(cur.getInt(0));
+            while (cur2.moveToNext()) {
+                precos.add(new Preco(cur2.getInt(0), cur2.getInt(1)));
+            }
 
-            prod = new Produto(1, "caixa de leite", precos);
+            prod = new Produto(cur.getInt(0), cur.getString(1), precos);
+
             jsonObject.add(prod);
         }
-
 
         return jsonObject;
     }
@@ -113,19 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Pega os valores da tela
         ListView mainList = (ListView) findViewById(R.id.listView);
-        int j = mainList.getChildCount();
+        int j = mainList.getCount();
         for (int i = 0; i < j; i++) {
-            View view1 = mainList.getChildAt(i);
+            View view1 = mainList.getAdapter().getView(i, null, null);
 
-            if (view1 instanceof RelativeLayout) {
-                TextView txtidProd = (TextView) view1.findViewById(R.id.idProd);
+            TextView txtidProd = (TextView) view1.findViewById(R.id.idProd);
+            NumberPicker numberPicker = (NumberPicker) view1.findViewById(R.id.numberPicker);
 
-                NumberPicker numberPicker = (NumberPicker) view1.findViewById(R.id.numberPicker);
-                int num = numberPicker.getValue();
+            TextView textView = (TextView) view1.findViewById(R.id.textView);
+            Log.d("Nome:",textView.getText().toString());
 
-
-                prodList.put(Integer.parseInt(txtidProd.getText().toString()), num);
-            }
+            prodList.put(Integer.parseInt(txtidProd.getText().toString()), numberPicker.getValue());
         }
 
         Iterator i = prodList.entrySet().iterator();
@@ -163,4 +138,3 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 }
-
